@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.madgag</groupId>
 	<artifactId>util-intervals</artifactId>
-	<version>1.3</version>
+	<version>1.4-SNAPSHOT</version>
 	<name>Support for interval-keyed maps</name>
 	<parent>
 		<groupId>com.madgag</groupId>
 		<artifactId>util-parent</artifactId>
-		<version>1.3</version>
+		<version>1.4-SNAPSHOT</version>
 	</parent>
 	<packaging>jar</packaging>
 	<organization>
