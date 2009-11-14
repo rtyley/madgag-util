@@ -14,13 +14,13 @@ public class StartThenEndComparator<T extends Comparable<T>> implements Comparat
     
 	@Override
 	public int compare(Interval<T> o1, Interval<T> o2) {
-		int startComparision=o1.getStart().compareTo(o2.getStart());
-		if (startComparision!=0) {
-			return startComparision;
+		int startComparison=o1.getStart().compareTo(o2.getStart());
+		if (startComparison!=0) {
+			return startComparison;
 		}
-		int endComparision=o1.getEnd().compareTo(o2.getEnd());
-		if (endComparision!=0) {
-			return endComparision;
+		int endComparison=o1.getEnd().compareTo(o2.getEnd());
+		if (endComparison!=0) {
+			return endComparison;
 		}
 		return 0;
 	}

@@ -8,13 +8,13 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
-import com.madgag.interval.AbstractInterval;
 import com.madgag.interval.Interval;
+import com.madgag.interval.OverlapIsEqualityComparator;
 import com.madgag.interval.SimpleInterval;
 
 public class IntervalMap<InstantType extends Comparable<InstantType>, EventType> {
 
-	private NavigableMap<Interval<InstantType>, EventType> events = new TreeMap<Interval<InstantType>, EventType>(AbstractInterval.OverlapIsEqualityComparator.<InstantType>instance());
+	private NavigableMap<Interval<InstantType>, EventType> events = new TreeMap<Interval<InstantType>, EventType>(OverlapIsEqualityComparator.<InstantType>instance());
 
 	public EventType getEventAt(InstantType instant) {
 		Map.Entry<Interval<InstantType>, EventType> floorEntry = entryForEventStartingAtOrBefore(instant);
@@ -42,7 +42,7 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 	}
 	
 	public NavigableMap<Interval<InstantType>, EventType> subMapForEventsDuring(InstantType fromKey, InstantType toKey) {
-		TreeMap<Interval<InstantType>, EventType> copyMap = new TreeMap<Interval<InstantType>, EventType>(AbstractInterval.OverlapIsEqualityComparator.<InstantType>instance());
+		TreeMap<Interval<InstantType>, EventType> copyMap = new TreeMap<Interval<InstantType>, EventType>(OverlapIsEqualityComparator.<InstantType>instance());
 		copyMap.putAll(internal_subMap(fromKey, toKey));
 		return copyMap;
 	}
