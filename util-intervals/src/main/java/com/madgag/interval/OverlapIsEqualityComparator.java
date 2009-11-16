@@ -2,6 +2,8 @@ package com.madgag.interval;
 
 import java.util.Comparator;
 
+import static com.madgag.interval.BeforeOrAfter.BEFORE;
+
 public class OverlapIsEqualityComparator<T extends Comparable<T>> implements Comparator<Interval<T>> {
 
     @SuppressWarnings("unchecked")
@@ -17,6 +19,6 @@ public class OverlapIsEqualityComparator<T extends Comparable<T>> implements Com
         if (o1.overlaps(o2)) {
             return 0;
         }
-        return o1.isBefore(o2)?-1:1;
+        return o1.is(BEFORE, o2)?-1:1;
     }
 }

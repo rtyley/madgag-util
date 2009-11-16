@@ -1,35 +1,34 @@
 package com.madgag.interval;
 
+import static com.madgag.interval.BeforeOrAfter.AFTER;
+import static com.madgag.interval.BeforeOrAfter.BEFORE;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 
-import java.util.Comparator;
-
 public abstract class AbstractInterval<T extends Comparable<T>> implements Interval<T> {
 
-	public boolean isAfter(T point) {
-		int comparison = getStart().compareTo(point);
-		return comparison>0 || (comparison==0 && getClosure().isLeft(OPEN));
-	}
-	
-	public boolean isBefore(T point) {
-		int comparison = getEnd().compareTo(point);
-		return comparison<0 || (comparison==0 && getClosure().isRight(OPEN));
-	}
-	
-	@Override
-	public boolean isAfter(Interval<T> other) {
-		return other.isBefore(this);
-	}
+    public boolean is(BeforeOrAfter beforeOrAfter, T point) {
+        T bound = boundBeyondWhichPointsAre(beforeOrAfter);
+        int comparison = bound.compareTo(point);
+        return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && getClosure().get(beforeOrAfter) ==OPEN);
+    }
 
-	@Override
-	public boolean isBefore(Interval<T> other) {
-		int comparison = getEnd().compareTo(other.getStart());
-		return comparison<0 || (comparison==0 && (getClosure().isRight(OPEN) || other.getClosure().isLeft(OPEN)));
-	}
-	
-	public boolean contains(T point) {
-		return !isBefore(point) && !isAfter(point);
+    public boolean is(BeforeOrAfter beforeOrAfter, Interval<T> otherInterval) {
+        boolean before = beforeOrAfter == BEFORE;
+        int comparison = boundBeyondWhichPointsAre(beforeOrAfter).compareTo(before?otherInterval.getStart():otherInterval.getEnd());
+        return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && (before?check(this,otherInterval):check(otherInterval,this)));
+    }
+
+    private boolean check(Interval<T> intervalBefore, Interval<T> intervalAfter) {
+        return intervalBefore.getClosure().isRight(OPEN) || intervalAfter.getClosure().isLeft(OPEN);
+    }
+
+    private T boundBeyondWhichPointsAre(BeforeOrAfter beforeOrAfter) {
+        return beforeOrAfter==BEFORE?getEnd():getStart();
+    }
+
+    public boolean contains(T point) {
+        return !is(BEFORE, point) && !is(AFTER, point);
 	}
 
     public boolean contains(Interval<T> other) {
@@ -52,7 +51,7 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
 
 	@Override
 	public boolean overlaps(Interval<T> other) {
-		return !isBefore(other) && !other.isBefore(this);
+        return !is(BEFORE, other) && !other.is(BEFORE, this);
 	}
 
 }
