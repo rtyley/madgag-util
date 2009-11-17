@@ -8,14 +8,14 @@ import static com.madgag.interval.Closure.OPEN;
 public abstract class AbstractInterval<T extends Comparable<T>> implements Interval<T> {
 
     public boolean is(BeforeOrAfter beforeOrAfter, T point) {
-        T bound = boundBeyondWhichPointsAre(beforeOrAfter);
+        T bound = boundBeyondWhichExternalPointsAre(beforeOrAfter);
         int comparison = bound.compareTo(point);
         return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && getClosure().get(beforeOrAfter) ==OPEN);
     }
 
     public boolean is(BeforeOrAfter beforeOrAfter, Interval<T> otherInterval) {
         boolean before = beforeOrAfter == BEFORE;
-        int comparison = boundBeyondWhichPointsAre(beforeOrAfter).compareTo(before?otherInterval.getStart():otherInterval.getEnd());
+        int comparison = boundBeyondWhichExternalPointsAre(beforeOrAfter).compareTo(before?otherInterval.getStart():otherInterval.getEnd());
         return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && (before?check(this,otherInterval):check(otherInterval,this)));
     }
 
@@ -23,7 +23,7 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
         return intervalBefore.getClosure().isRight(OPEN) || intervalAfter.getClosure().isLeft(OPEN);
     }
 
-    private T boundBeyondWhichPointsAre(BeforeOrAfter beforeOrAfter) {
+    private T boundBeyondWhichExternalPointsAre(BeforeOrAfter beforeOrAfter) {
         return beforeOrAfter==BEFORE?getEnd():getStart();
     }
 
