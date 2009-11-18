@@ -2,6 +2,7 @@ package com.madgag.interval;
 
 import static com.madgag.interval.BeforeOrAfter.AFTER;
 import static com.madgag.interval.BeforeOrAfter.BEFORE;
+import static com.madgag.interval.BoundType.*;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 
@@ -15,7 +16,7 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
 
     public boolean is(BeforeOrAfter beforeOrAfter, Interval<T> otherInterval) {
         boolean before = beforeOrAfter == BEFORE;
-        int comparison = boundBeyondWhichExternalPointsAre(beforeOrAfter).compareTo(before?otherInterval.getStart():otherInterval.getEnd());
+        int comparison = boundBeyondWhichExternalPointsAre(beforeOrAfter).compareTo(before?otherInterval.get(MIN):otherInterval.get(MAX));
         return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && (before?check(this,otherInterval):check(otherInterval,this)));
     }
 
@@ -24,7 +25,7 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
     }
 
     private T boundBeyondWhichExternalPointsAre(BeforeOrAfter beforeOrAfter) {
-        return beforeOrAfter==BEFORE?getEnd():getStart();
+        return beforeOrAfter==BEFORE?get(MAX):get(MIN);
     }
 
     public boolean contains(T point) {
@@ -32,14 +33,14 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
 	}
 
     public boolean contains(Interval<T> other) {
-    	int startComparison = getStart().compareTo(other.getStart());
+    	int startComparison = get(MIN).compareTo(other.get(MIN));
     	if (startComparison>0) {
     		return false;
     	}
     	if (startComparison==0 && getClosure().isLeft(OPEN) && other.getClosure().isLeft(CLOSED)) {
     		return false;
     	}
-    	int endComparison = getEnd().compareTo(other.getEnd());
+    	int endComparison = get(MAX).compareTo(other.get(MAX));
     	if (endComparison<0) {
     		return false;
     	}

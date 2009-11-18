@@ -10,7 +10,7 @@ import org.joda.time.Interval;
 import org.joda.time.ReadableInstant;
 
 import com.madgag.interval.collections.IntervalMap;
-
+import static com.madgag.interval.BoundType.*;
 
 @SuppressWarnings("unchecked")
 public class JodaIntervalMap<V> {
@@ -32,7 +32,7 @@ public class JodaIntervalMap<V> {
 	}
 
 	private Interval jodaInterval(com.madgag.interval.Interval simpleInterval) {
-		return new Interval((ReadableInstant) simpleInterval.getStart(),(ReadableInstant) simpleInterval.getEnd());
+		return new Interval((ReadableInstant) simpleInterval.get(MIN),(ReadableInstant) simpleInterval.get(MAX));
 	}
 	
 	private com.madgag.interval.Interval simpleInterval(Interval interval) {

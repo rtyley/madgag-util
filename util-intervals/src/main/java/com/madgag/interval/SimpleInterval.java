@@ -11,7 +11,7 @@ import static com.madgag.interval.IntervalClosure.OPEN_OPEN;
 
 public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T> {
 
-	private final Bound<T> startBound, endBound;
+	private final T startBound, endBound;
 	private IntervalClosure intervalClosure;
 
 	public SimpleInterval(T start, T end) {
@@ -23,8 +23,8 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 			throw new IllegalArgumentException();
 		}
 		intervalClosure = IntervalClosure.of(startClosure, endClosure);
-		this.startBound = new Bound<T>(BoundTypeWithClosure.get(MIN, startClosure), start);
-		this.endBound = new Bound<T>(BoundTypeWithClosure.get(MAX, endClosure), end);
+		this.startBound =  start;
+		this.endBound = end;
 	}
 	
 	public static <T extends Comparable<T>> SimpleInterval<T> interval(T start, T end) {
@@ -34,16 +34,8 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 	public static <T extends Comparable<T>> SimpleInterval<T> instantInterval(T instant, Closure closure) {
 		return new SimpleInterval<T>(instant, closure, instant, closure);
 	}
-	
-	public T getStart() {
-		return startBound.getValue();
-	}
-	
-	public T getEnd() {
-		return endBound.getValue();
-	}
-	
-	@Override
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -91,11 +83,16 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 	}
 	
 	protected Interval<T> withClosure(IntervalClosure ic) {
-		return new SimpleInterval<T>(getStart(), ic.getMin(), getEnd(), ic.getMax());
+        return new SimpleInterval<T>(get(MIN), ic.getMin(), get(MAX), ic.getMax());
 	}
 
 
-	@Override
+    @Override
+    public T get(BoundType boundType) {
+        return boundType==MIN?startBound:endBound;
+    }
+
+    @Override
 	public IntervalClosure getClosure() {
 		return intervalClosure;
 	}

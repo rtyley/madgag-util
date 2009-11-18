@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import com.madgag.interval.Interval;
 import com.madgag.interval.OverlapIsEqualityComparator;
 import com.madgag.interval.SimpleInterval;
+import static com.madgag.interval.BoundType.*;
 
 public class IntervalMap<InstantType extends Comparable<InstantType>, EventType> {
 
@@ -48,7 +49,7 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 	}
 	
 	public NavigableMap<Interval<InstantType>, EventType> subMapForEventsDuring(Interval<InstantType> simpleInterval) {
-		return subMapForEventsDuring(simpleInterval.getStart(), simpleInterval.getEnd());
+		return subMapForEventsDuring(simpleInterval.get(MIN), simpleInterval.get(MAX));
 	}
 	
 	private NavigableMap<Interval<InstantType>, EventType> internal_subMap(InstantType fromKey, InstantType toKey) {
@@ -56,7 +57,7 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 	}
 	
 	private NavigableMap<Interval<InstantType>, EventType> internal_subMapFor(Interval<InstantType> interval) {
-		return internal_subMap(interval.getStart(), interval.getEnd());
+		return internal_subMap(interval.get(MIN), interval.get(MAX));
 	}
 
 	public void put(Interval<InstantType> interval, EventType event) {
@@ -80,7 +81,7 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 	}
 	
 	public Interval<InstantType> getInterval() {
-		return events.isEmpty()?null:new SimpleInterval<InstantType>(events.firstKey().getStart(),events.lastKey().getEnd());
+		return events.isEmpty()?null:new SimpleInterval<InstantType>(events.firstKey().get(MIN),events.lastKey().get(MAX));
 	}
 
 	public Collection<EventType> values() {

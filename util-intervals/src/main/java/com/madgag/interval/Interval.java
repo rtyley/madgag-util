@@ -1,9 +1,8 @@
 package com.madgag.interval;
 
 public interface Interval<T extends Comparable<T>> {
-    T getStart();
 
-    T getEnd();
+    T get(BoundType boundType);
 
     boolean is(BeforeOrAfter beforeOrAfter, T point);
 

@@ -10,6 +10,7 @@ import org.joda.time.ReadableInstant;
 
 import com.madgag.interval.SimpleInterval;
 import com.madgag.interval.collections.IntervalSet;
+import static com.madgag.interval.BoundType.*;
 
 
 @SuppressWarnings("unchecked")
@@ -23,7 +24,7 @@ public class JodaIntervalSet {
 	}
 	
 	private Interval jodaInterval(com.madgag.interval.Interval simpleInterval) {
-		return new Interval((ReadableInstant) simpleInterval.getStart(),(ReadableInstant) simpleInterval.getEnd());
+		return new Interval((ReadableInstant) simpleInterval.get(MIN),(ReadableInstant) simpleInterval.get(MAX));
 	}
 	
 	private SimpleInterval simpleInterval(Interval interval) {

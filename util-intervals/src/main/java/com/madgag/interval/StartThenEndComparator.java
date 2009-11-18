@@ -2,6 +2,8 @@ package com.madgag.interval;
 
 import java.util.Comparator;
 
+import static com.madgag.interval.BoundType.*;
+
 public class StartThenEndComparator<T extends Comparable<T>> implements Comparator<Interval<T>> {
 
 	@SuppressWarnings("unchecked")
@@ -14,11 +16,11 @@ public class StartThenEndComparator<T extends Comparable<T>> implements Comparat
     
 	@Override
 	public int compare(Interval<T> o1, Interval<T> o2) {
-		int startComparison=o1.getStart().compareTo(o2.getStart());
+		int startComparison=o1.get(MIN).compareTo(o2.get(MIN));
 		if (startComparison!=0) {
 			return startComparison;
 		}
-		int endComparison=o1.getEnd().compareTo(o2.getEnd());
+		int endComparison=o1.get(MAX).compareTo(o2.get(MAX));
 		if (endComparison!=0) {
 			return endComparison;
 		}
