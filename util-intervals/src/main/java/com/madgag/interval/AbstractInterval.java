@@ -2,16 +2,17 @@ package com.madgag.interval;
 
 import static com.madgag.interval.BeforeOrAfter.AFTER;
 import static com.madgag.interval.BeforeOrAfter.BEFORE;
-import static com.madgag.interval.BoundType.*;
+import static com.madgag.interval.Bound.*;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 
 public abstract class AbstractInterval<T extends Comparable<T>> implements Interval<T> {
 
     public boolean is(BeforeOrAfter beforeOrAfter, T point) {
+        Bound boundBeyondWhichExternalPointsAre=getBoundBeyondWhichExternalPointsAre(beforeOrAfter);
         T bound = boundBeyondWhichExternalPointsAre(beforeOrAfter);
         int comparison = bound.compareTo(point);
-        return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && getClosure().get(beforeOrAfter) ==OPEN);
+        return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && getClosure().is(boundBeyondWhichExternalPointsAre, OPEN));
     }
 
     public boolean is(BeforeOrAfter beforeOrAfter, Interval<T> otherInterval) {
@@ -25,7 +26,11 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
     }
 
     private T boundBeyondWhichExternalPointsAre(BeforeOrAfter beforeOrAfter) {
-        return beforeOrAfter==BEFORE?get(MAX):get(MIN);
+        return get(getBoundBeyondWhichExternalPointsAre(beforeOrAfter));
+    }
+
+    private Bound getBoundBeyondWhichExternalPointsAre(BeforeOrAfter beforeOrAfter) {
+        return beforeOrAfter==BEFORE?MAX:MIN;
     }
 
     public boolean contains(T point) {

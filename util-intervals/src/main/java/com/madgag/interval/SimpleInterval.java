@@ -1,7 +1,7 @@
 package com.madgag.interval;
 
-import static com.madgag.interval.BoundType.MAX;
-import static com.madgag.interval.BoundType.MIN;
+import static com.madgag.interval.Bound.MAX;
+import static com.madgag.interval.Bound.MIN;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 import static com.madgag.interval.IntervalClosure.CLOSED_CLOSED;
@@ -88,8 +88,8 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 
 
     @Override
-    public T get(BoundType boundType) {
-        return boundType==MIN?startBound:endBound;
+    public T get(Bound bound) {
+        return bound ==MIN?startBound:endBound;
     }
 
     @Override

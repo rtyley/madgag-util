@@ -11,7 +11,7 @@ import java.util.TreeMap;
 import com.madgag.interval.Interval;
 import com.madgag.interval.OverlapIsEqualityComparator;
 import com.madgag.interval.SimpleInterval;
-import static com.madgag.interval.BoundType.*;
+import static com.madgag.interval.Bound.*;
 
 public class IntervalMap<InstantType extends Comparable<InstantType>, EventType> {
 

@@ -1,6 +1,7 @@
 package com.madgag.interval;
 
 import static com.madgag.interval.BeforeOrAfter.BEFORE;
+import static com.madgag.interval.Bound.MAX;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 
@@ -37,7 +38,12 @@ public enum IntervalClosure {
 		return min==closure;
 	}
 
-    public Closure get(BeforeOrAfter beforeOrAfter) {
-        return (beforeOrAfter==BEFORE)?max:min;
+    public Closure forBound(Bound bound) {
+        return (bound == MAX)?max:min;
     }
+
+    public boolean is(Bound bound, Closure closure) {
+        return forBound(bound)==closure;
+    }
+
 }

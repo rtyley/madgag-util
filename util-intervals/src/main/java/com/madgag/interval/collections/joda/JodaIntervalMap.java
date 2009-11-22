@@ -10,7 +10,7 @@ import org.joda.time.Interval;
 import org.joda.time.ReadableInstant;
 
 import com.madgag.interval.collections.IntervalMap;
-import static com.madgag.interval.BoundType.*;
+import static com.madgag.interval.Bound.*;
 
 @SuppressWarnings("unchecked")
 public class JodaIntervalMap<V> {

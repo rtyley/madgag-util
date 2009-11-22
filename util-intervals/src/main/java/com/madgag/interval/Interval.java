@@ -2,7 +2,7 @@ package com.madgag.interval;
 
 public interface Interval<T extends Comparable<T>> {
 
-    T get(BoundType boundType);
+    T get(Bound bound);
 
     boolean is(BeforeOrAfter beforeOrAfter, T point);
 

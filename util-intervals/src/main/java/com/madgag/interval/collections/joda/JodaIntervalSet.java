@@ -10,7 +10,7 @@ import org.joda.time.ReadableInstant;
 
 import com.madgag.interval.SimpleInterval;
 import com.madgag.interval.collections.IntervalSet;
-import static com.madgag.interval.BoundType.*;
+import static com.madgag.interval.Bound.*;
 
 
 @SuppressWarnings("unchecked")

@@ -2,7 +2,7 @@ package com.madgag.interval;
 
 import java.util.Comparator;
 
-import static com.madgag.interval.BoundType.*;
+import static com.madgag.interval.Bound.*;
 
 public class StartThenEndComparator<T extends Comparable<T>> implements Comparator<Interval<T>> {
 

@@ -1,6 +1,6 @@
 package com.madgag.interval;
 
-public enum BoundType {
+public enum Bound {
 	MIN {
 		public boolean isWithinBound(int comparison) {
 			return comparison<0;
