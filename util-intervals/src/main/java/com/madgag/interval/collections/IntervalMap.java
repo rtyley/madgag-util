@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.madgag.interval.Interval;
 import com.madgag.interval.OverlapIsEqualityComparator;
@@ -15,7 +16,27 @@ import static com.madgag.interval.Bound.*;
 
 public class IntervalMap<InstantType extends Comparable<InstantType>, EventType> {
 
-	private NavigableMap<Interval<InstantType>, EventType> events = new TreeMap<Interval<InstantType>, EventType>(OverlapIsEqualityComparator.<InstantType>instance());
+	private final NavigableMap<Interval<InstantType>, EventType> events;
+
+    public static <I extends Comparable<I>, E> IntervalMap<I,E>  newIntervalMap() {
+        return newIntervalMapBasedOn(new TreeMap<Interval<I>, E>(OverlapIsEqualityComparator.<I>instance()));
+    }
+
+    public static <I extends Comparable<I>, E> IntervalMap<I,E>  newConcurrentIntervalMap() {
+        return newIntervalMapBasedOn(new ConcurrentSkipListMap<Interval<I>, E>(OverlapIsEqualityComparator.<I>instance()));
+    }
+
+    public static <I extends Comparable<I>, E> IntervalMap<I,E>  newIntervalMapBasedOn(NavigableMap<Interval<I>, E> emptyMap) {
+        return new IntervalMap(emptyMap);
+    }
+
+    private IntervalMap(NavigableMap<Interval<InstantType>, EventType> events) {
+        if (OverlapIsEqualityComparator.<InstantType>instance()!=events.comparator() || !events.isEmpty()) {
+            throw new IllegalArgumentException("IntervalMaps need to be based on initially-empty NavigableMaps using the OverlapIsEqualityComparator");
+        }
+        this.events = events;
+    }
+
 
 	public EventType getEventAt(InstantType instant) {
 		Map.Entry<Interval<InstantType>, EventType> floorEntry = entryForEventStartingAtOrBefore(instant);
