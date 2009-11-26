@@ -11,11 +11,12 @@ import org.joda.time.ReadableInstant;
 
 import com.madgag.interval.collections.IntervalMap;
 import static com.madgag.interval.Bound.*;
+import static com.madgag.interval.collections.IntervalMap.newIntervalMap;
 
 @SuppressWarnings("unchecked")
 public class JodaIntervalMap<V> {
 
-	private IntervalMap intervalMap = new IntervalMap();
+	private IntervalMap intervalMap = newIntervalMap();
 
     public void put(Interval interval, V value) {
 		intervalMap.put(simpleInterval(interval), value);

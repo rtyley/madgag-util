@@ -11,12 +11,13 @@ import org.joda.time.ReadableInstant;
 import com.madgag.interval.SimpleInterval;
 import com.madgag.interval.collections.IntervalSet;
 import static com.madgag.interval.Bound.*;
+import static com.madgag.interval.collections.IntervalSet.newIntervalSet;
 
 
 @SuppressWarnings("unchecked")
 public class JodaIntervalSet {
 
-	private IntervalSet intervalSet = new IntervalSet();
+	private IntervalSet intervalSet = newIntervalSet();
 
     public boolean add(Interval interval) {
 		intervalSet.add(simpleInterval(interval));
