@@ -81,12 +81,20 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 		return internal_subMap(interval.get(MIN), interval.get(MAX));
 	}
 
+    public boolean isEmpty() {
+        return events.isEmpty();
+    }
+
 	public void put(Interval<InstantType> interval, EventType event) {
 		checkCanAddEventTo(interval);
 		addWithoutChecking(interval, event);
 	}
+
+    public EventType remove(Interval<InstantType> interval) {
+        return events.remove(interval);
+    }
 	
-	public void overrideWith(SimpleInterval<InstantType> interval, EventType event) {
+	public void overrideWith(Interval<InstantType> interval, EventType event) {
 		internal_subMapFor(interval).clear();
 		addWithoutChecking(interval, event);
 	}
