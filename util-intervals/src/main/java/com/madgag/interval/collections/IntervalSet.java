@@ -3,6 +3,7 @@ package com.madgag.interval.collections;
 import static com.madgag.interval.collections.IntervalMap.newIntervalMap;
 import static java.lang.Boolean.TRUE;
 
+import java.util.Collection;
 import java.util.NavigableMap;
 import java.util.Set;
 import java.util.TreeMap;
@@ -24,12 +25,18 @@ public class IntervalSet<InstantType extends Comparable<InstantType>> {
         this.map = map;
     }
 
-	public void add(SimpleInterval<InstantType> interval) {
+    public void addAll(Collection<? extends Interval<InstantType>> intervals) {
+        for (Interval<InstantType> interval : intervals) {
+            add(interval);
+        }
+    }
+
+	public void add(Interval<InstantType> interval) {
 		map.put(interval, TRUE);
 	}
 
-	public Set<Interval<InstantType>> subSet(Interval<InstantType> simpleInterval) {
-		return map.subMapForEventsDuring(simpleInterval).keySet();
+	public Set<Interval<InstantType>> subSet(Interval<InstantType> interval) {
+		return map.keysFor(interval);
 	}
 
 }

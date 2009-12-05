@@ -3,16 +3,13 @@ package com.madgag.interval.collections;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 
-import com.madgag.interval.Interval;
-import com.madgag.interval.OverlapIsEqualityComparator;
-import com.madgag.interval.SimpleInterval;
+import com.madgag.interval.*;
+
 import static com.madgag.interval.Bound.*;
+import static com.madgag.interval.SimpleInterval.instantInterval;
 
 public class IntervalMap<InstantType extends Comparable<InstantType>, EventType> {
 
@@ -52,34 +49,28 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 	}
 
 	private Map.Entry<Interval<InstantType>, EventType> entryForEventStartingAtOrBefore(InstantType instant) {
-		return events.floorEntry(SimpleInterval.instantInterval(instant, CLOSED));
-	}
-	
-	public Collection<EventType> getEventsDuring(InstantType start, InstantType end) {
-		return getEventsDuring(new SimpleInterval<InstantType>(start, end));
+		return events.floorEntry(instantInterval(instant, CLOSED));
 	}
 	
 	public Collection<EventType> getEventsDuring(Interval<InstantType> interval) {
 		return internal_subMapFor(interval).values();
 	}
-	
-	public NavigableMap<Interval<InstantType>, EventType> subMapForEventsDuring(InstantType fromKey, InstantType toKey) {
-		TreeMap<Interval<InstantType>, EventType> copyMap = new TreeMap<Interval<InstantType>, EventType>(OverlapIsEqualityComparator.<InstantType>instance());
-		copyMap.putAll(internal_subMap(fromKey, toKey));
-		return copyMap;
-	}
-	
-	public NavigableMap<Interval<InstantType>, EventType> subMapForEventsDuring(Interval<InstantType> simpleInterval) {
-		return subMapForEventsDuring(simpleInterval.get(MIN), simpleInterval.get(MAX));
-	}
-	
-	private NavigableMap<Interval<InstantType>, EventType> internal_subMap(InstantType fromKey, InstantType toKey) {
-		return events.subMap(SimpleInterval.instantInterval(fromKey, CLOSED), true, SimpleInterval.instantInterval(toKey, OPEN), true);
+
+	public Set<Interval<InstantType>> keysFor(Interval<InstantType> interval) {
+        return events.navigableKeySet().subSet(
+                instantIntervalFrom(interval,MIN), true,
+                instantIntervalFrom(interval,MAX), true);
 	}
 	
 	private NavigableMap<Interval<InstantType>, EventType> internal_subMapFor(Interval<InstantType> interval) {
-		return internal_subMap(interval.get(MIN), interval.get(MAX));
+        return events.subMap(
+                instantIntervalFrom(interval,MIN), true,
+                instantIntervalFrom(interval,MAX), true);
 	}
+
+    private Interval<InstantType> instantIntervalFrom(Interval<InstantType> interval, Bound bound) {
+        return instantInterval(interval.get(bound), interval.getClosure().forBound(bound));
+    }
 
     public boolean isEmpty() {
         return events.isEmpty();

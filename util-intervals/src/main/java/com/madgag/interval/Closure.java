@@ -13,4 +13,8 @@ public enum Closure {
 	public boolean isSatisfiedByEquality() {
 		return satisfiedByEquality;
 	}
+
+    public <T extends Comparable<T>> Interval<T> interval(T start, T end) {
+        return new SimpleInterval<T>(start, this, end, this);
+    }
 }

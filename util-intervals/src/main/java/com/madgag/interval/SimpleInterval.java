@@ -17,20 +17,26 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 	public SimpleInterval(T start, T end) {
 		this(start,CLOSED, end, OPEN);
 	}
-	
-	public SimpleInterval(T start, Closure startClosure, T end, Closure endClosure) {
+	public SimpleInterval(T start, T end, IntervalClosure intervalClosure) {
 		if (start.compareTo(end) > 0) {
 			throw new IllegalArgumentException();
 		}
-		intervalClosure = IntervalClosure.of(startClosure, endClosure);
+		this.intervalClosure = intervalClosure;
 		this.startBound =  start;
 		this.endBound = end;
+	}
+	public SimpleInterval(T start, Closure startClosure, T end, Closure endClosure) {
+		this(start, end, IntervalClosure.of(startClosure, endClosure));
 	}
 	
 	public static <T extends Comparable<T>> SimpleInterval<T> interval(T start, T end) {
 		return new SimpleInterval<T>(start,end);
 	}
-	
+
+    public static <T extends Comparable<T>> SimpleInterval<T> interval(T start, T end, IntervalClosure intervalClosure) {
+		return new SimpleInterval<T>(start, end, intervalClosure);
+	}
+
 	public static <T extends Comparable<T>> SimpleInterval<T> instantInterval(T instant, Closure closure) {
 		return new SimpleInterval<T>(instant, closure, instant, closure);
 	}
