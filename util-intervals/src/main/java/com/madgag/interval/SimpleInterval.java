@@ -105,7 +105,7 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 		return intervalClosure;
 	}
 
-    public static <T extends Comparable<T>> Interval<T> union(Iterable<Interval<T>> intervals) {
+    public static <T extends Comparable<T>> Interval<T> union(Interval<T>... intervals) {
         Interval<T> earliestInterval=null, latestInterval = null;
         for (Interval<T> interval : intervals) {
             if (earliestInterval==null || earliestInterval.is(AFTER,interval.get(MIN))) {
