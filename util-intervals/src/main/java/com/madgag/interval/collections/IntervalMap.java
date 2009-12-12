@@ -10,6 +10,7 @@ import com.madgag.interval.*;
 
 import static com.madgag.interval.Bound.*;
 import static com.madgag.interval.SimpleInterval.instantInterval;
+import static com.madgag.interval.SimpleInterval.union;
 
 public class IntervalMap<InstantType extends Comparable<InstantType>, EventType> {
 
@@ -99,13 +100,13 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 	private void addWithoutChecking(Interval<InstantType> interval, EventType event) {
 		events.put(interval, event);
 	}
-	
-	public Interval<InstantType> getInterval() {
-		return events.isEmpty()?null:new SimpleInterval<InstantType>(events.firstKey().get(MIN),events.lastKey().get(MAX));
-	}
 
 	public Collection<EventType> values() {
 		return events.values();
+	}
+
+    public Interval<InstantType> getSpannedInterval() {
+		return events.isEmpty()?null:union(events.firstKey(),events.lastKey());
 	}
 
 

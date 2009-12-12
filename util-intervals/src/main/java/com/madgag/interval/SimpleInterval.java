@@ -1,5 +1,7 @@
 package com.madgag.interval;
 
+import static com.madgag.interval.BeforeOrAfter.AFTER;
+import static com.madgag.interval.BeforeOrAfter.BEFORE;
 import static com.madgag.interval.Bound.MAX;
 import static com.madgag.interval.Bound.MIN;
 import static com.madgag.interval.Closure.CLOSED;
@@ -102,5 +104,34 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 	public IntervalClosure getClosure() {
 		return intervalClosure;
 	}
+
+    public static <T extends Comparable<T>> Interval<T> union(Iterable<Interval<T>> intervals) {
+        Interval<T> earliestInterval=null, latestInterval = null;
+        for (Interval<T> interval : intervals) {
+            if (earliestInterval==null || earliestInterval.is(AFTER,interval.get(MIN))) {
+                earliestInterval=interval;
+            }
+            if (latestInterval==null || latestInterval.is(BEFORE,interval.get(MAX))) {
+                latestInterval=interval;
+            }
+        }
+        return unionOf(earliestInterval, latestInterval);
+	}
+
+    private static <T extends Comparable<T>> Interval<T> unionOf(Interval<T> earliestInterval, Interval<T> latestInterval) {
+        if (latestInterval==null) {
+            return earliestInterval;
+        }
+        if (earliestInterval==null) {
+			return latestInterval;
+		}
+        if (earliestInterval.contains(latestInterval)) {
+            return earliestInterval;
+        }
+        if (latestInterval.contains(earliestInterval)) {
+			return latestInterval;
+		}
+        return new SimpleInterval(earliestInterval.get(MIN),earliestInterval.getClosure().forBound(MIN),latestInterval.get(MAX),latestInterval.getClosure().forBound(MAX));
+    }
 
 }

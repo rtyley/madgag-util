@@ -33,10 +33,12 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
         return beforeOrAfter==BEFORE?MAX:MIN;
     }
 
+    @Override
     public boolean contains(T point) {
         return !is(BEFORE, point) && !is(AFTER, point);
 	}
 
+    @Override
     public boolean contains(Interval<T> other) {
     	int startComparison = get(MIN).compareTo(other.get(MIN));
     	if (startComparison>0) {
