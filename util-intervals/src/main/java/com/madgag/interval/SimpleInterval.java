@@ -1,5 +1,7 @@
 package com.madgag.interval;
 
+import java.util.Arrays;
+
 import static com.madgag.interval.BeforeOrAfter.AFTER;
 import static com.madgag.interval.BeforeOrAfter.BEFORE;
 import static com.madgag.interval.Bound.MAX;
@@ -8,7 +10,7 @@ import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 import static com.madgag.interval.IntervalClosure.CLOSED_CLOSED;
 import static com.madgag.interval.IntervalClosure.OPEN_OPEN;
-
+import static java.util.Arrays.asList;
 
 
 public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T> {
@@ -105,7 +107,8 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 		return intervalClosure;
 	}
 
-    public static <T extends Comparable<T>> Interval<T> union(Interval<T>... intervals) {
+
+    public static <T extends Comparable<T>> Interval<T> union(Iterable<Interval<T>> intervals) {
         Interval<T> earliestInterval=null, latestInterval = null;
         for (Interval<T> interval : intervals) {
             if (earliestInterval==null || earliestInterval.is(AFTER,interval.get(MIN))) {
@@ -116,6 +119,10 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
             }
         }
         return unionOf(earliestInterval, latestInterval);
+    }
+
+    public static <T extends Comparable<T>> Interval<T> union(Interval<T>... intervals) {
+        return union(asList(intervals));
 	}
 
     private static <T extends Comparable<T>> Interval<T> unionOf(Interval<T> earliestInterval, Interval<T> latestInterval) {
