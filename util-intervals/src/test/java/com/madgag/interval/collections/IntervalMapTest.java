@@ -1,9 +1,12 @@
 package com.madgag.interval.collections;
 
 import com.madgag.interval.Closure;
+import com.madgag.interval.Interval;
 import com.madgag.interval.IntervalClosure;
 import com.madgag.interval.SimpleInterval;
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.joda.time.Instant;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -20,16 +23,29 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
+import static org.joda.time.Duration.standardSeconds;
 import static org.junit.Assert.assertThat;
 
 public class IntervalMapTest {
+
+    @Test
+	public void shouldGetLatestSignificantIntervalStartingAtOrBefore() {
+        IntervalMap<Integer,String> intervalMap = newIntervalMap();
+        intervalMap.put(interval(2,5,CLOSED_OPEN),"A");
+
+		assertThat(intervalMap.getLatestEventStartingAtOrBefore(1), nullValue());
+		assertThat(intervalMap.getLatestEventStartingAtOrBefore(2), equalTo("A"));
+		assertThat(intervalMap.getLatestEventStartingAtOrBefore(3), equalTo("A"));
+		assertThat(intervalMap.getLatestEventStartingAtOrBefore(6), equalTo("A"));
+	}
+
+
     @Test
     public void shouldGetEventsDuringInterval() throws Exception {
         IntervalMap<Integer,String> intervalMap = newIntervalMap();
         intervalMap.put(interval(10, 20, CLOSED_OPEN),"A");
         intervalMap.put(interval(50, 60, CLOSED_OPEN),"B");
         assertThat(intervalMap.getEventsDuring(interval(10, 60, CLOSED_OPEN)),hasItems("A","B"));
-        
     }
 
     @Test
