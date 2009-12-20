@@ -16,9 +16,11 @@ public abstract class AbstractInterval<T extends Comparable<T>> implements Inter
     }
 
     public boolean is(BeforeOrAfter beforeOrAfter, Interval<T> otherInterval) {
-        boolean before = beforeOrAfter == BEFORE;
-        int comparison = boundBeyondWhichExternalPointsAre(beforeOrAfter).compareTo(before?otherInterval.get(MIN):otherInterval.get(MAX));
-        return beforeOrAfter.isTrueFor(comparison) || (comparison==0 && (before?check(this,otherInterval):check(otherInterval,this)));
+        if (beforeOrAfter == AFTER) {
+            return otherInterval.is(BEFORE,this);
+        }
+        int comparison = get(MAX).compareTo(otherInterval.get(MIN));
+        return comparison<0 || (comparison==0 && (check(this,otherInterval)));
     }
 
     private boolean check(Interval<T> intervalBefore, Interval<T> intervalAfter) {
