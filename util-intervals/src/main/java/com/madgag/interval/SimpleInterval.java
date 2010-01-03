@@ -111,11 +111,13 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
     public static <T extends Comparable<T>> Interval<T> union(Iterable<Interval<T>> intervals) {
         Interval<T> earliestInterval=null, latestInterval = null;
         for (Interval<T> interval : intervals) {
-            if (earliestInterval==null || earliestInterval.is(AFTER,interval.get(MIN))) {
-                earliestInterval=interval;
-            }
-            if (latestInterval==null || latestInterval.is(BEFORE,interval.get(MAX))) {
-                latestInterval=interval;
+            if (interval!=null) {
+                if (earliestInterval==null || earliestInterval.is(AFTER,interval.get(MIN))) {
+                    earliestInterval=interval;
+                }
+                if (latestInterval==null || latestInterval.is(BEFORE,interval.get(MAX))) {
+                    latestInterval=interval;
+                }
             }
         }
         return unionOf(earliestInterval, latestInterval);

@@ -6,9 +6,7 @@ import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
 import static com.madgag.interval.IntervalClosure.OPEN_CLOSED;
 import static com.madgag.interval.IntervalClosure.OPEN_OPEN;
-import static com.madgag.interval.SimpleInterval.instantInterval;
-import static com.madgag.interval.SimpleInterval.interval;
-import static com.madgag.interval.SimpleInterval.overlap;
+import static com.madgag.interval.SimpleInterval.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
@@ -146,6 +144,16 @@ public class SimpleIntervalTest {
 
 	private <T extends Comparable<T>> String assertOverlapMessage(Interval<T> c, Interval<T> d) {
         return "for c="+c+" overlaps d="+d+" (c<d="+ c.is(BEFORE, d) +" c>d="+ c.is(AFTER, d) +" d<c="+ d.is(BEFORE, c) +" d>c="+ d.is(AFTER, c) +")";
+	}
+
+    @Test
+    public void shouldReturnCorrectUnion() {
+        assertThat(union(interval(10,20),interval(15,25)),equalTo(interval(10,25)));
+	}
+
+    @Test
+    public void shouldReturnCorrectUnionWithoutErrorEvenIfSomeIntervalsAreNull() {
+        assertThat(union(interval(10,20),null,interval(15,25),null),equalTo(interval(10,25)));
 	}
 
 }
