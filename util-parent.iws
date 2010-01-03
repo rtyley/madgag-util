@@ -3,8 +3,10 @@
   <component name="ChangeListManager" verified="true">
     <list readonly="true" id="4e4d537f-468c-4177-959b-e20e86ab1b59" name="Default" comment="joda is a generics nightmare" />
     <list default="true" id="71a538a6-5fa8-4bf4-a975-55353ad87daa" name="joda is a generics nightmare" comment="Various convenience methods, more tests for the collection classes - and some pruning of the api">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/SimpleInterval.java" afterPath="$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/SimpleInterval.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util-intervals/src/test/java/com/madgag/interval/SimpleIntervalTest.java" afterPath="$PROJECT_DIR$/util-intervals/src/test/java/com/madgag/interval/SimpleIntervalTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util-misc/pom.xml" afterPath="$PROJECT_DIR$/util-misc/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util-intervals/pom.xml" afterPath="$PROJECT_DIR$/util-intervals/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util-parent.iws" afterPath="$PROJECT_DIR$/util-parent.iws" />
     </list>
     <ignored path="util-parent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,10 +84,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleInterval.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SimpleInterval.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/SimpleInterval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="57" selection-start="3685" selection-end="3685" vertical-scroll-proportion="0.5695538">
+            <state line="122" column="57" selection-start="3685" selection-end="3685" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="4" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util-intervals/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="8" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/util-misc/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="18" selection-start="573" selection-end="573" vertical-scroll-proportion="0.5838323">
               <folding />
             </state>
           </provider>
@@ -121,11 +150,11 @@
         <option value="$PROJECT_DIR$/util-intervals/src/test/java/com/madgag/interval/collections/IntervalMapTest.java" />
         <option value="$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/BeforeOrAfter.java" />
         <option value="$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/AbstractInterval.java" />
-        <option value="$PROJECT_DIR$/util-intervals/pom.xml" />
-        <option value="$PROJECT_DIR$/util-misc/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/util-intervals/src/test/java/com/madgag/interval/SimpleIntervalTest.java" />
         <option value="$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/SimpleInterval.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/util-intervals/pom.xml" />
+        <option value="$PROJECT_DIR$/util-misc/pom.xml" />
       </list>
     </option>
   </component>
@@ -512,23 +541,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1280" height="750" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32392028" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32392028" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37209302" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3255814" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22801302" sideWeight="0.7093023" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22801302" sideWeight="0.66445184" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2630293" sideWeight="0.7093023" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22557004" sideWeight="0.7093023" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27906978" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27906978" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow to here" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46843854" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -575,16 +604,6 @@
     <entry file="file://$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/AbstractInterval.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="37" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util-intervals/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="29" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util-misc/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="10" selection-start="955" selection-end="955" vertical-scroll-proportion="0.7553957" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/BeforeOrAfter.java">
@@ -641,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="26" selection-start="1184" selection-end="1184" vertical-scroll-proportion="-0.7036011">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/collections/IntervalMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="21" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.0">
@@ -671,7 +683,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/util-intervals/src/main/java/com/madgag/interval/SimpleInterval.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="57" selection-start="3685" selection-end="3685" vertical-scroll-proportion="0.5695538">
+        <state line="122" column="57" selection-start="3685" selection-end="3685" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="4" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util-intervals/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="8" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util-misc/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="18" selection-start="573" selection-end="573" vertical-scroll-proportion="0.5838323">
           <folding />
         </state>
       </provider>
