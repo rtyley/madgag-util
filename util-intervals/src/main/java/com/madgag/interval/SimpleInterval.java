@@ -33,15 +33,15 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
 		this(start, end, IntervalClosure.of(startClosure, endClosure));
 	}
 	
-	public static <T extends Comparable<T>> SimpleInterval<T> interval(T start, T end) {
+	public static <T extends Comparable<T>> Interval<T> interval(T start, T end) {
 		return new SimpleInterval<T>(start,end);
 	}
 
-    public static <T extends Comparable<T>> SimpleInterval<T> interval(T start, T end, IntervalClosure intervalClosure) {
+    public static <T extends Comparable<T>> Interval<T> interval(T start, T end, IntervalClosure intervalClosure) {
 		return new SimpleInterval<T>(start, end, intervalClosure);
 	}
 
-	public static <T extends Comparable<T>> SimpleInterval<T> instantInterval(T instant, Closure closure) {
+	public static <T extends Comparable<T>> Interval<T> instantInterval(T instant, Closure closure) {
 		return new SimpleInterval<T>(instant, closure, instant, closure);
 	}
 
@@ -141,4 +141,20 @@ public class SimpleInterval<T extends Comparable<T>> extends AbstractInterval<T>
         return new SimpleInterval(earliestInterval.get(MIN),earliestInterval.getClosure().forBound(MIN),latestInterval.get(MAX),latestInterval.getClosure().forBound(MAX));
     }
 
+    public static <T extends Comparable<T>> Interval<T> overlap(Interval<T> a,Interval<T> b) {
+        if (!a.overlaps(b)) {
+            return null;
+        }
+        if (a.contains(b)) {
+        	return b;
+        }
+        if (b.contains(a)) {
+        	return a;
+        }
+        boolean aIsFirst=a.is(BEFORE,b.get(MAX));
+        Interval<T> overlapStart = aIsFirst?b:a;
+        Interval<T> overlapEnd   = aIsFirst?a:b;
+        IntervalClosure intervalClosure = IntervalClosure.of(overlapStart.getClosure().forBound(MIN),overlapEnd.getClosure().forBound(MAX));
+        return interval(overlapStart.get(MIN),overlapEnd.get(MAX), intervalClosure);
+	}
 }

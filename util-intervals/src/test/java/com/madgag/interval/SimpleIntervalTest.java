@@ -4,11 +4,18 @@ import static com.madgag.interval.BeforeOrAfter.AFTER;
 import static com.madgag.interval.BeforeOrAfter.BEFORE;
 import static com.madgag.interval.Closure.CLOSED;
 import static com.madgag.interval.Closure.OPEN;
+import static com.madgag.interval.IntervalClosure.OPEN_CLOSED;
+import static com.madgag.interval.IntervalClosure.OPEN_OPEN;
 import static com.madgag.interval.SimpleInterval.instantInterval;
+import static com.madgag.interval.SimpleInterval.interval;
+import static com.madgag.interval.SimpleInterval.overlap;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class SimpleIntervalTest {
@@ -90,14 +97,14 @@ public class SimpleIntervalTest {
 
 	@Test
 	public void shouldReturnTrueIfIntervalsOverlap() {
-		assertOverlap(true,new SimpleInterval<Integer>(10,20), new SimpleInterval<Integer>(15,16));
-		assertOverlap(true,new SimpleInterval<Integer>(5,15), new SimpleInterval<Integer>(10,20));
-		assertOverlap(false,new SimpleInterval<Integer>(0,5), new SimpleInterval<Integer>(10,20));
+		assertOverlaps(true,new SimpleInterval<Integer>(10,20), new SimpleInterval<Integer>(15,16));
+		assertOverlaps(true,new SimpleInterval<Integer>(5,15), new SimpleInterval<Integer>(10,20));
+		assertOverlaps(false,new SimpleInterval<Integer>(0,5), new SimpleInterval<Integer>(10,20));
 	}
 	
 	@Test
 	public void shouldReturnFalseForOverlapIfIntervalsAbut() {
-		assertOverlap(false,new SimpleInterval<Integer>(10,20), new SimpleInterval<Integer>(20,30));
+		assertOverlaps(false,new SimpleInterval<Integer>(10,20), new SimpleInterval<Integer>(20,30));
 	}
 
 	@Test
@@ -112,20 +119,32 @@ public class SimpleIntervalTest {
 	
 	@Test
 	public void shouldReturnTrueForOverlapUsingZeroLengthIntervals() {
-		SimpleInterval<Integer> thickInterval = new SimpleInterval<Integer>(10,20);
-		SimpleInterval<Integer> instantIntervalAtStartOfThick = instantInterval(10, CLOSED);
-		SimpleInterval<Integer> instantIntervalAtEndOfThick = instantInterval(20, OPEN);
+		Interval<Integer> thickInterval = new SimpleInterval<Integer>(10,20);
+		Interval<Integer> instantIntervalAtStartOfThick = instantInterval(10, CLOSED);
+		Interval<Integer> instantIntervalAtEndOfThick = instantInterval(20, OPEN);
 		
-		assertOverlap(true, thickInterval, instantIntervalAtStartOfThick);
-		assertOverlap(false,thickInterval, instantIntervalAtEndOfThick);
+		assertOverlaps(true, thickInterval, instantIntervalAtStartOfThick);
+		assertOverlaps(false,thickInterval, instantIntervalAtEndOfThick);
+	}
+
+    @Test
+    public void shouldReturnCorrectOverlap() {
+		assertOverlap(interval(10,20),interval(15,25),equalTo(interval(15,20)));
+        assertOverlap(interval(10,20, OPEN_CLOSED),interval(15,25, OPEN_OPEN),equalTo(interval(15,20, OPEN_CLOSED)));
+        assertOverlap(interval(10,15),interval(20,25), Matchers.<Interval<Integer>>nullValue());
+	}
+
+	private <T extends Comparable<T>> void assertOverlap(Interval<T> a, Interval<T> b, Matcher<Interval<T>> expectedOverlap) {
+		assertThat(assertOverlapMessage(a, b), overlap(a,b), expectedOverlap);
+		assertThat(assertOverlapMessage(b, a), overlap(b,a), expectedOverlap);
 	}
 	
-	private void assertOverlap(boolean expectedOverlap, SimpleInterval<Integer> a, SimpleInterval<Integer> b) {
+	private <T extends Comparable<T>> void assertOverlaps(boolean expectedOverlap, Interval<T> a, Interval<T> b) {
 		assertThat(assertOverlapMessage(a, b), a.overlaps(b), equalTo(expectedOverlap));
 		assertThat(assertOverlapMessage(b, a), b.overlaps(a), equalTo(expectedOverlap));
 	}
 
-	private String assertOverlapMessage(SimpleInterval<Integer> c,	SimpleInterval<Integer> d) {
+	private <T extends Comparable<T>> String assertOverlapMessage(Interval<T> c, Interval<T> d) {
         return "for c="+c+" overlaps d="+d+" (c<d="+ c.is(BEFORE, d) +" c>d="+ c.is(AFTER, d) +" d<c="+ d.is(BEFORE, c) +" d>c="+ d.is(AFTER, c) +")";
 	}
 
