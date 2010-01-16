@@ -49,7 +49,7 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 		return entry==null?null:entry.getValue();
 	}
 
-	private Map.Entry<Interval<InstantType>, EventType> entryForEventStartingAtOrBefore(InstantType instant) {
+	Map.Entry<Interval<InstantType>, EventType> entryForEventStartingAtOrBefore(InstantType instant) {
 		return events.floorEntry(instantInterval(instant, CLOSED));
 	}
 	

@@ -3,10 +3,7 @@ package com.madgag.interval.collections;
 import static com.madgag.interval.collections.IntervalMap.newIntervalMap;
 import static java.lang.Boolean.TRUE;
 
-import java.util.Collection;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.madgag.interval.Interval;
@@ -43,4 +40,8 @@ public class IntervalSet<InstantType extends Comparable<InstantType>> {
 		return map.keysFor(interval);
 	}
 
+    public Interval<InstantType> getLatestEventStartingAtOrBefore(InstantType instant) {
+		Map.Entry<Interval<InstantType>, Boolean> entry = map.entryForEventStartingAtOrBefore(instant);
+		return entry==null?null:entry.getKey();
+	}
 }
