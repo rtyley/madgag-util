@@ -35,6 +35,10 @@ public class IntervalSet<InstantType extends Comparable<InstantType>> {
 		map.put(interval, TRUE);
 	}
 
+	public void overrideWith(Interval<InstantType> interval) {
+		map.overrideWith(interval, TRUE);
+	}
+
 	public Set<Interval<InstantType>> subSet(Interval<InstantType> interval) {
 		return map.keysFor(interval);
 	}
