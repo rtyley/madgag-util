@@ -67,10 +67,10 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
+    <distributionManagement>
         <repository>
             <id>madgag-repo-site</id>
             <url>http://madgag.com:8081/nexus</url>
         </repository>
-    </repositories>
+    </distributionManagement>
 </project>
