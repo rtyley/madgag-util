@@ -69,8 +69,8 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>madgag-repo-site</id>
-            <url>http://madgag.com:8081/nexus</url>
+            <id>releases</id>
+            <url>http://madgag.com:8081/nexus/content/repositories/releases</url>
         </repository>
     </distributionManagement>
 </project>
