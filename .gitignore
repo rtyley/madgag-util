@@ -11,4 +11,5 @@ release.properties
 .settings
 *.iws
 *.ipr
+*.iml
 
