@@ -17,9 +17,9 @@
         </license>
     </licenses>
     <scm>
-        <url>scm:git:git@github.com:rtyley/madgag-util.git</url>
-        <connection>scm:git:git@github.com:rtyley/madgag-util.git</connection>
-        <developerConnection>scm:git:git@github.com:rtyley/madgag-util.git</developerConnection>
+        <url>scm:git:git://github.com/rtyley/madgag-util.git</url>
+        <connection>scm:git:git://github.com/rtyley/madgag-util.git</connection>
+        <developerConnection>scm:git:git://github.com/rtyley/madgag-util.git</developerConnection>
     </scm>
     <developers>
         <developer>
