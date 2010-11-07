@@ -39,7 +39,7 @@ public class UpdatesFromDiffConverter {
             }
             Update previousUpdate=updates.getLast();
             if (previousUpdate.isChange() == update.isChange()) {
-                updates.pollLast();
+                updates.removeLast();
                 updates.addLast(previousUpdate.append(update));
             } else {
                 updates.addLast(update);

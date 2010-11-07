@@ -63,10 +63,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <target>1.6</target>
-                    <source>1.6</source>
-                </configuration>
+                <version>2.3.2</version>
             </plugin>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
