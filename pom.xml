@@ -32,6 +32,7 @@
         <module>util-intervals</module>
         <module>util-misc</module>
 	<module>util-diff</module>
+        <module>util-compress</module>
     </modules>
     <dependencies>
         <dependency>
