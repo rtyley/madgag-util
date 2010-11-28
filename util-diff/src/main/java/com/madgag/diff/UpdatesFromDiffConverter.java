@@ -1,11 +1,11 @@
 package com.madgag.diff;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static com.madgag.diff.Update.EMPTY;
-
-import java.util.*;
-
 import name.fraser.neil.plaintext.diff_match_patch.Diff;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 public class UpdatesFromDiffConverter {
 	public List<Update> convert(List<Diff> diffs) {

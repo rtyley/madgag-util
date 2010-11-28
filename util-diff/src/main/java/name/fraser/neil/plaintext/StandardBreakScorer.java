@@ -1,8 +1,8 @@
 package name.fraser.neil.plaintext;
 
-import static java.lang.Character.CONTROL;
-
 import java.util.regex.Pattern;
+
+import static java.lang.Character.CONTROL;
 
 public class StandardBreakScorer implements SemanticBreakScorer {
 	  private final Pattern BLANKLINEEND

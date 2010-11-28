@@ -1,8 +1,6 @@
 package com.madgag.diff;
 
-import name.fraser.neil.plaintext.diff_match_patch;
 import name.fraser.neil.plaintext.diff_match_patch.Diff;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.util.List;
