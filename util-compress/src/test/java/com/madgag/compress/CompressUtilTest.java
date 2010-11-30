@@ -27,5 +27,8 @@ public class CompressUtilTest {
         unzip(zipFileStream, destinationFolder);
 
         assertThat(md5Hex(openInputStream(new File(destinationFolder, "util-compress-test-archive/alpha/beta.txt"))),is("fcaa3361b73b86f17f190ca893601567"));
+        File interestingFile = new File(destinationFolder, "util-compress-test-archive/.git/hooks/update.sample");
+        assertThat(interestingFile.length(),is(3609L));
+        assertThat(md5Hex(openInputStream(interestingFile)),is("d848ae78e95416d07974bed7b610f54f"));
     }
 }

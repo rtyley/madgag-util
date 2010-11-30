@@ -27,7 +27,8 @@ public class CompressUtil {
             } else {
                 FileOutputStream inflatedFileOutputStream = openOutputStream(entryDestinationFile);
                 try {
-                    copy(new BoundedInputStream(archiveInputStream, entry.getCompressedSize()), inflatedFileOutputStream);
+                    copy(new BoundedInputStream(archiveInputStream, entry.getSize()), inflatedFileOutputStream);
+                    inflatedFileOutputStream.flush();
                 } finally {
                     closeQuietly(inflatedFileOutputStream); // don't close BoundedInputStream - throw it away, don't propagate close!
                 }
