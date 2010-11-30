@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.madgag</groupId>
 	<artifactId>util-intervals</artifactId>
-	<version>1.26-SNAPSHOT</version>
+	<version>1.26</version>
 	<name>'Intervals' library</name>
     <description>Support for interval-keyed maps and sets - useful for storing items on a time-interval-keyed basis</description>
 	<parent>
 		<groupId>com.madgag</groupId>
 		<artifactId>util-parent</artifactId>
-		<version>1.26-SNAPSHOT</version>
+		<version>1.26</version>
 	</parent>
 	<packaging>jar</packaging>
 </project>
