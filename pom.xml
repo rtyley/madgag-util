@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.madgag</groupId>
     <artifactId>util-parent</artifactId>
-    <version>1.27</version>
+    <version>1.28-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>General utility and collections classes</name>
     <description>Various libraries, including the Intervals lib used by Glug</description>
