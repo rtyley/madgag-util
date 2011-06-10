@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.madgag</groupId>
     <artifactId>util-compress</artifactId>
-    <version>1.29-SNAPSHOT</version>
+    <version>1.29</version>
     <name>Compression library</name>
     <description>Let's you unzip a zip file to a directory</description>
     <parent>
         <groupId>com.madgag</groupId>
         <artifactId>util-parent</artifactId>
-        <version>1.29-SNAPSHOT</version>
+        <version>1.29</version>
     </parent>
     <packaging>jar</packaging>
     <dependencies>
