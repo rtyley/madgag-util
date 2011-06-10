@@ -8,7 +8,7 @@
     </parent>
     <groupId>com.madgag</groupId>
     <artifactId>util-parent</artifactId>
-    <version>1.29</version>
+    <version>1.29-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>General utility and collections classes</name>
     <description>Various libraries, including the Intervals lib used by Glug</description>
