@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.madgag</groupId>
 	<artifactId>util-diff</artifactId>
-	<version>1.33</version>
+	<version>1.34-SNAPSHOT</version>
 	<name>Diff library</name>
     <description>Wrapper around Neil Fraser's diff_match_patch</description>
 	<parent>
 		<groupId>com.madgag</groupId>
 		<artifactId>util-parent</artifactId>
-		<version>1.33</version>
+		<version>1.34-SNAPSHOT</version>
 	</parent>
 	<packaging>jar</packaging>
     <dependencies>
