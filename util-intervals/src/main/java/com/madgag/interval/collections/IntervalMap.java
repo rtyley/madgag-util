@@ -93,7 +93,8 @@ public class IntervalMap<InstantType extends Comparable<InstantType>, EventType>
 
 	private void checkCanAddEventTo(Interval<InstantType> interval) {
 		if (events.containsKey(interval)) {
-			throw new IllegalArgumentException();
+			EventType existingEvent = events.get(interval);
+			throw new IllegalArgumentException(interval+" already occupied by "+existingEvent);
 		}
 	}
 
